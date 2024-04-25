@@ -16,19 +16,15 @@ df.dropna(subset=['Company', 'Position'], inplace=True)  # Remove rows where 'Co
 # Title of the Streamlit App
 st.title('LinkedIn Connection Insights')
 
-# Displaying a simple DataFrame
-if st.checkbox('Show raw data'):
-    st.write(df)
-
 # Connections per Company
 connections_per_company = df['Company'].value_counts().head(10)
 fig1 = px.bar(connections_per_company, title="Top 10 Companies by Connections")
 st.plotly_chart(fig1)
 
 # Connections Over Time
-connections_over_time = df.groupby(df['Connected On'].dt.to_period("M")).size()
-fig2 = px.line(connections_over_time, title="Connections Over Time")
-st.plotly_chart(fig2)
+# connections_over_time = df.groupby(df['Connected On'].dt.to_period("M")).size()
+# fig2 = px.line(connections_over_time, title="Connections Over Time")
+# st.plotly_chart(fig2)
 
 # Display details about Position
 positions_distribution = df['Position'].value_counts().head(10)
