@@ -12,6 +12,7 @@ df["Day"] = df["Connected On"].dt.day_name()
 
 df = df.drop(columns=['URL', 'Email Address'],inplace=False)
 df = df.dropna()
+st.dataframe(df)
 
 # Basic data cleaning
 df['Connected On'] = pd.to_datetime(df['Connected On'])
