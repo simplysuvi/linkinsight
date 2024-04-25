@@ -3,7 +3,6 @@ import pandas as pd
 import plotly.express as px
 
 # Load your data here
-@st.cache  # Use this decorator to cache the data load
 def load_data():
     # Replace the file path with your LinkedIn CSV file path
     return pd.read_csv('data/Connections.csv')
