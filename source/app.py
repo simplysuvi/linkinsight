@@ -15,6 +15,44 @@ df = df.drop(columns=['URL', 'Email Address'],inplace=False)
 df = df.dropna()
 st.dataframe(df)
 
+# Number of connections made in each year
+n_connections_per_year = df["Year"].value_counts().sort_index()
+
+# Number of connections made monthly
+n_connections_per_month = df["Month"].value_counts().sort_index()
+
+# Number of connections made based on day of the week
+n_connections_per_day = df["Day"].value_counts()
+
+# Create a list of all months in chronological order
+months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+month_map = {
+    "January": 1,
+    "February": 2,
+    "March": 3,
+    "April": 4,
+    "May": 5,
+    "June": 6,
+    "July": 7,
+    "August": 8,
+    "September": 9,
+    "October": 10,
+    "November": 11,
+    "December": 12
+  }
+
+
+days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+day_of_week_map = {
+  "Monday": 0,
+  "Tuesday": 1,
+  "Wednesday": 2,
+  "Thursday": 3,
+  "Friday": 4,
+  "Saturday": 5,
+  "Sunday": 6
+}
+
 # Title of the Streamlit App
 st.title('LinkedIn Connection Insights')
 
