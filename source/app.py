@@ -2,12 +2,16 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-# Load your data here
-def load_data():
-    # Replace the file path with your LinkedIn CSV file path
-    return pd.read_csv('data/Connections.csv')
+# Load data
+df = pd.read_csv('data/Connections.csv')
 
-df = load_data()
+df["Connected On"] = pd.to_datetime(df["Connected On"])
+df["Year"] = df["Connected On"].dt.year
+df["Month"] = df["Connected On"].dt.month_name()
+df["Day"] = df["Connected On"].dt.day_name()
+
+df = df.drop(columns=['URL', 'Email Address'],inplace=False)
+df = df.dropna()
 
 # Basic data cleaning
 df['Connected On'] = pd.to_datetime(df['Connected On'])
