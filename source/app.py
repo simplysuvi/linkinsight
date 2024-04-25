@@ -101,3 +101,30 @@ fig.update_layout(
 )
 
 st.plotly_chart(fig, use_container_width=True)
+
+
+
+# Calculate the cumulative sum of the number of connections made in each year
+total_connections_per_year = n_connections_per_year.cumsum()
+fig = go.Figure()
+fig.add_trace(go.Bar(
+    x=total_connections_per_year.index,
+    y=total_connections_per_year.values,
+    name='Cumulative Connections',
+    marker_color='lightgreen'
+))
+fig.add_trace(go.Scatter(
+    x=total_connections_per_year.index,
+    y=total_connections_per_year.values,
+    mode='lines+markers',
+    name='Total Connections',
+    line_color='green'
+))
+fig.update_layout(
+    title="Total LinkedIn Connections in Each Year",
+    xaxis_title="Year",
+    yaxis_title="Total Number of Connections",
+    width=1400,
+    height=800
+)
+st.plotly_chart(fig, use_container_width=True)
