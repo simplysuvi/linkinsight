@@ -70,7 +70,7 @@ fig = px.line(
     markers=True
 )
 fig.update_traces(mode='lines+markers+text', textposition='top center')
-st.plotly_chart(fig)
+st.plotly_chart(fig, use_container_width=True)
 
 
 # Calculate the number of connections made each day in each year
@@ -100,4 +100,4 @@ fig.update_layout(
     height=700
 )
 
-st.plotly_chart(fig)
+st.plotly_chart(fig, use_container_width=True)
