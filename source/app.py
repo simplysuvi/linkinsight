@@ -17,7 +17,7 @@ df.dropna(subset=['Company', 'Position'], inplace=True)  # Remove rows where 'Co
 st.title('LinkedIn Connection Insights')
 
 # Connections per Company
-connections_per_company = df['Company'].value_counts().head(20).sort_values(ascending=False)
+connections_per_company = df['Company'].value_counts().head(20).sort_values(ascending=True)
 fig1 = px.bar(connections_per_company, title="Top 10 Companies by Connections", orientation='h')
 st.plotly_chart(fig1)
 
