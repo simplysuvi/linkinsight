@@ -58,7 +58,7 @@ st.title('LinkedIn Connection Insights')
 
 # Connections per Company
 connections_per_company = df['Company'].value_counts().head(20).sort_values(ascending=True)
-fig1 = px.bar(connections_per_company, title="Top 10 Companies by Connections", orientation='h')
+fig1 = px.bar(connections_per_company, title="Top 20 Companies by Connections", orientation='h')
 st.plotly_chart(fig1,use_container_width=True)
 
 # Connections Over Time
