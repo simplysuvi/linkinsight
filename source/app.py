@@ -63,22 +63,41 @@ st.plotly_chart(fig1,use_container_width=True)
 
 # Calculate average connections per day per year
 avg_connections_per_day_per_year = n_connections_per_year.divide(365)
-
-# Plot using Plotly
 fig = px.line(
     avg_connections_per_day_per_year,
     labels={'index': 'Year', 'value': 'Average Connections per Day'},
     title='Average LinkedIn Connections Daily Trend',
     markers=True
 )
-
-# Customize the markers to show values
 fig.update_traces(mode='lines+markers+text', textposition='top center')
-
-# Display the plot
 st.plotly_chart(fig)
 
-# Display details about Position
-positions_distribution = df['Position'].value_counts().head(10)
-fig3 = px.pie(positions_distribution, names=positions_distribution.index, title="Top 10 Positions Held by Connections")
-st.plotly_chart(fig3)
+
+# Calculate the number of connections made each day in each year
+n_connections_per_day_per_year = df.groupby(["Year", "Day"]).size()
+data = []
+for year in range(2016, 2025):
+    for day in days:
+        data.append({
+            'Year': year,
+            'Day of Week': day,
+            'Connections': n_connections_per_day_per_year.get((year, day), 0)
+        })
+
+df1 = pd.DataFrame(data)
+fig = px.line(
+    df1, 
+    x="Day of Week", 
+    y="Connections", 
+    color="Year",
+    title="Number of LinkedIn Connections Made Each Day of the Week (2016-2024)",
+    markers=True
+)
+fig.update_layout(
+    xaxis_title="Day of Week",
+    yaxis_title="Number of Connections",
+    width=1200,
+    height=700
+)
+
+st.plotly_chart(fig)
