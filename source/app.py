@@ -133,7 +133,7 @@ st.plotly_chart(fig, use_container_width=True)
 
 
 # Displaying Top 20 Positions
-top_positions = df_li['Position'].value_counts().head(20).sort_values()
+top_positions = df['Position'].value_counts().head(20).sort_values()
 fig1 = px.bar(top_positions, orientation='h',
               labels={'value': 'Number of Connections in that Position', 'index': 'Position'},
               title="Top 20 Positions within the Connections",
@@ -143,7 +143,7 @@ fig1.update_layout(xaxis_title="Number of Connections in that Position",
                    height=700)
 
 # Displaying Top 20 Companies
-top_companies = df_li['Company'].value_counts().head(20).sort_values()
+top_companies = df['Company'].value_counts().head(20).sort_values()
 fig2 = px.bar(top_companies, orientation='h',
               labels={'value': 'Number of Connections in Company', 'index': 'Company'},
               title="Top 20 Companies Connections Work at",
