@@ -10,13 +10,10 @@ df["Year"] = df["Connected On"].dt.year
 df["Month"] = df["Connected On"].dt.month_name()
 df["Day"] = df["Connected On"].dt.day_name()
 
+# Basic data cleaning
 df = df.drop(columns=['URL', 'Email Address'],inplace=False)
 df = df.dropna()
 st.dataframe(df)
-
-# Basic data cleaning
-df['Connected On'] = pd.to_datetime(df['Connected On'])
-df.dropna(subset=['Company', 'Position'], inplace=True)  # Remove rows where 'Company' or 'Position' is missing
 
 # Title of the Streamlit App
 st.title('LinkedIn Connection Insights')
