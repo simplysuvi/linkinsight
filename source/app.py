@@ -61,10 +61,22 @@ connections_per_company = df['Company'].value_counts().head(20).sort_values(asce
 fig1 = px.bar(connections_per_company, title="Top 20 Companies by Connections", orientation='h')
 st.plotly_chart(fig1,use_container_width=True)
 
-# Connections Over Time
-# connections_over_time = df.groupby(df['Connected On'].dt.to_period("M")).size()
-# fig2 = px.line(connections_over_time, title="Connections Over Time")
-# st.plotly_chart(fig2)
+# Calculate average connections per day per year
+avg_connections_per_day_per_year = connections_per_year.divide(365)
+
+# Plot using Plotly
+fig = px.line(
+    avg_connections_per_day_per_year,
+    labels={'index': 'Year', 'value': 'Average Connections per Day'},
+    title='Average LinkedIn Connections Daily Trend',
+    markers=True
+)
+
+# Customize the markers to show values
+fig.update_traces(mode='lines+markers+text', textposition='top center')
+
+# Display the plot
+st.plotly_chart(fig)
 
 # Display details about Position
 positions_distribution = df['Position'].value_counts().head(10)
