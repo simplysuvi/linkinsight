@@ -62,7 +62,7 @@ fig1 = px.bar(connections_per_company, title="Top 20 Companies by Connections", 
 st.plotly_chart(fig1,use_container_width=True)
 
 # Calculate average connections per day per year
-avg_connections_per_day_per_year = connections_per_year.divide(365)
+avg_connections_per_day_per_year = n_connections_per_year.divide(365)
 
 # Plot using Plotly
 fig = px.line(
