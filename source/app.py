@@ -137,7 +137,7 @@ top_positions = df['Position'].value_counts().head(20).sort_values()
 fig1 = px.bar(top_positions, orientation='h',
               labels={'value': 'Number of Connections in that Position', 'index': 'Position'},
               title="Top 20 Positions within the Connections",
-              color_discrete_sequence=px.colors.sequential.Flake)
+              color_discrete_sequence=px.colors.sequential.green)
 fig1.update_layout(xaxis_title="Number of Connections in that Position",
                    yaxis_title="Position",
                    height=700)
